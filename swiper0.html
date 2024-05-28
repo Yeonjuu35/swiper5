@@ -5,10 +5,7 @@
   <meta charset="utf-8" />
   <title>Swiper demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-  <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-  <!-- Demo styles -->
   <style>
     html,
     body {
@@ -29,103 +26,56 @@
       width: 100%;
       height: 100%;
     }
-
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      /* color: transparent; */
+    .ad0{
+        background-image: url(https://www.wwdoctor.com/static/asset/images/main/banner_bg_01.jpg);        
     }
-    .swiper-slide span{
-        transform: translateY(200%);
-        opacity: 0;
-        transition: 5s;
+    .ad1{
+        background-image: url(https://www.wwdoctor.com/static/asset/images/main//banner_bg_02.jpg);        
     }
-    .swiper-slide-active span{
-        transform: translateY(0);
-        opacity: 1;
+    .ad2{
+        background-image: url(https://www.wwdoctor.com/static/asset/images/main//banner_bg_03.jpg);        
     }
-
-    .add0{
-        background-image: url(./img/1.jpg);
-    }
-    .add1{
-        background-image: url(./img/2.jpg);
-    }
-    .add2{
-        background-image: url(./img/3.jpg);
-    }
-
-    /* .swiper-slide img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    } */
-
-    .swiper-pagination-bullet {
-      width: auto;
-      height: auto;
-      text-align: center;
-      line-height: 20px;
-      font-size: 12px;
-      color: #000;
-      opacity: 1;
-      background-color: transparent;
-    }
-
-    .swiper-pagination-bullet-active {
-      color: #007aff;
-      background-color: transparent;
-    }
-
-
   </style>
 </head>
 
 <body>
   <!-- Swiper -->
-  <div class="swiper mySwiper" id="pyengkang">
-    <div class="swiper-wrapper">
+  <section class="mainbanner">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
         <!-- 
-            swiper 기존 클래스명 수정하지말고 커스터마이징한 클래스를 추가해주기 + (n:th child 쓰지 않기) 
-            클래스는 손댈 수 없음 > 같은 슬라이드 다른 내용물이라면 아이디를 다르게 적어주기
+          스와이퍼를 가져왔을때 swiper-slide부분만 커스텀마이징 할 수 있음 / 나머지는 자바스크립트가 작용
+          id를 입력하면 여러개의 swiper를 사용했을때 개별로 적용할 수 있다.
+          section으로 분리시켜 id를 만들지 않고 class로 적용할 수 있다.
         -->
-        <div class="swiper-slide add0">
-            <span>Slide 1</span>
+        <div class="swiper-slide bg0">
+          <span>광고배너타이틀</span>
         </div>
-        <div class="swiper-slide add1">
-            <span>Slide 2</span>
+        <div class="swiper-slide bg1">
+          <span>광고배너타이틀</span>
         </div>
-        <div class="swiper-slide add2">
-            <span>Slide 3</span>
-        </div>
+        <div class="swiper-slide bg2">
+          <span>광고배너타이틀</span>
+        </div>    
+      </div>
+
+      <div class="swiper-pagination"></div>
     </div>
-
-    <div class="swiper-pagination"></div>
-  </div>
-
-  <!-- Swiper JS -->
+  </section>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  <!-- Initialize Swiper -->
   <script>
-    const swiper = new Swiper("#pyengkang.mySwiper", {
+    // 실행식
+    const swiper_mainbanner = new Swiper("#mainbanner .swiper", {
       pagination: {
-        el: "#pyengkang .swiper-pagination",
+        el: "#mainbanner .swiper-pagination",
         clickable: true,
         renderBullet: function (index, className) {
-            return `<span class="${className}">ㅇㅅㅇ</span>` 
+          // return '<span class="' + className + '">' + (index + 1) + "</span>";
+          return `<span class="${className}">${index + 1}</span>`;
         },
       },
     });
   </script>
 </body>
-
 </html>
