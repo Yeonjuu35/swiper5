@@ -5,7 +5,10 @@
   <meta charset="utf-8" />
   <title>Swiper demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Demo styles -->
   <style>
     html,
     body {
@@ -26,30 +29,74 @@
       width: 100%;
       height: 100%;
     }
-    .ad0{
+
+    /* 슬라이드
+    .swiper-slide { 
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;      
+    }
+    .swiper-slide span{
+        transform: translateY(100%);
+        opacity: 0;
+        transition: 1s;
+        font-size: 50px;
+    } 
+    화면에 조준된 슬라이드 
+    .swiper-slide-active span{
+        transform: translateY(0);
+        opacity: 1;
+    } 
+    */
+
+    .bg0{
         background-image: url(https://www.wwdoctor.com/static/asset/images/main/banner_bg_01.jpg);        
     }
-    .ad1{
+    .bg1{
         background-image: url(https://www.wwdoctor.com/static/asset/images/main//banner_bg_02.jpg);        
     }
-    .ad2{
+    .bg2{
         background-image: url(https://www.wwdoctor.com/static/asset/images/main//banner_bg_03.jpg);        
+    }
+    .swiper-slide{
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+    .swiper-slide-active{
+
+    }
+    .swiper-pagination-bullet {
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      opacity: 1;
+      background-color: transparent;
+    }
+
+    /* 활성화된 버튼*/
+    .swiper-pagination-bullet-active {
+      /* color: #fff; */
+      color: #007aff;
+      background-color: transparent;
     }
   </style>
 </head>
 
 <body>
   <!-- Swiper -->
-  <section class="mainbanner">
-    <div class="swiper mySwiper">
+  <section id="mainbanner">
+    <div class="swiper mySwiper" id="pyengkang">
       <div class="swiper-wrapper">
-        <!-- 
-          스와이퍼를 가져왔을때 swiper-slide부분만 커스텀마이징 할 수 있음 / 나머지는 자바스크립트가 작용
-          id를 입력하면 여러개의 swiper를 사용했을때 개별로 적용할 수 있다.
-          section으로 분리시켜 id를 만들지 않고 class로 적용할 수 있다.
-        -->
         <div class="swiper-slide bg0">
-          <span>광고배너타이틀</span>
+            <span>광고배너타이틀</span>
         </div>
         <div class="swiper-slide bg1">
           <span>광고배너타이틀</span>
@@ -58,21 +105,27 @@
           <span>광고배너타이틀</span>
         </div>    
       </div>
-
       <div class="swiper-pagination"></div>
     </div>
-  </section>
+  </section>  
+
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
     // 실행식
+    const bannerText = ["편강한의원 찐후기", "한약소개", "예약하기"]
     const swiper_mainbanner = new Swiper("#mainbanner .swiper", {
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: true,
+      },
       pagination: {
         el: "#mainbanner .swiper-pagination",
         clickable: true,
         renderBullet: function (index, className) {
           // return '<span class="' + className + '">' + (index + 1) + "</span>";
-          return `<span class="${className}">${index + 1}</span>`;
+          return `<span class="${className}">${bannerText[0]}</span>`;
         },
       },
     });
